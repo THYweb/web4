@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>計算機範例</title>
+	<link rel="stylesheet" href="">
+
+	<script type="text/javascript">
+		
+		
+		var Opstr=0; //存運算符號
+		
+		var valueNum=0;  //存放數值
+		var OpStreValue=0; //存符號
+
+		//按數字鍵盤和小數點按鈕
+		function btnNum(str){
+
+			//判斷空值
+			if(Opstr==null){                      
+				document.getElementById("screenbox").value=str;
+				Opstr=0;
+				
+			}
+
+			//判斷值是否為0
+			if(document.getElementById("screenbox").value==0){                        
+				document.getElementById("screenbox").value=str;
+			}else{
+				document.getElementById("screenbox").value+=str;
+			}
+
+		}
+
+		//按運算符號按鈕
+		function btnOp(str){
+
+			
+			//存放數值和運算符號
+			 valueNum=document.getElementById("screenbox").value;
+			 OpStrValue=str;
+
+
+			//防止第二次輸入的值與第一次數字連在一起，所以輸入完第一次後設""
+			document.getElementById("screenbox").value="";
+			document.getElementById("showOper").value=OpStrValue;
+		}
+		
+		//按等於按鈕，就計算出結果
+		function equa(){
+			
+			switch(OpStrValue){
+
+				case '+':
+					document.getElementById("screenbox").value=parseFloat(valueNum)+parseFloat(document.getElementById("screenbox").value);
+				break;
+
+				case '-':
+					document.getElementById("screenbox").value=parseFloat(valueNum)-parseFloat(document.getElementById("screenbox").value);
+				break;
+
+				case '*':
+					document.getElementById("screenbox").value=parseFloat(valueNum)*parseFloat(document.getElementById("screenbox").value);
+				break;
+
+				case '/':
+					document.getElementById("screenbox").value=parseFloat(valueNum)/parseFloat(document.getElementById("screenbox").value);
+				break;
+
+			}
+
+		}
+		
+		//清除數字和符號的按鈕
+		function clearNum(str){
+			
+			
+			switch(str){
+				case 'C':
+					document.getElementById("screenbox").value='';
+					document.getElementById("showOper").value='';
+				break;
+			}
+
+		}
+        
+       
+
+	</script>
+
+	<style type="text/css">
+
+		*{margin:0;padding:0;}
+		.count{background:#FF0000;width:225px;height:330px;margin:0 auto;margin-top:100px;}
+		.textinput input{width:152px;height:46px;position:relative;left:6px;top:6px;margin-bottom:5px;text-align:right;}
+		.key input{position:relative;left:6px;top:5px;}
+		
+		 .showOperInput{margin-left:2px;}
+	</style>
+
+</head>
+
+
+
+<body>
+	
+	
+	
+	<div class="count">
+
+		<div class="textinput">
+			<input type="text"   id="screenbox">
+			<input type="text"  style="width:46px;height:46px;" id="showOper" class="showOperInput">
+		</div>
+		
+		
+		<div class="key">
+			<input type="button" style="background-image:url('images/C.png');width:158px;height:50px;"  onClick="clearNum('C')">
+			<input type="button" style="background-image:url('images/plus.png');width:50px;height:50px;"  onClick="btnOp('+')">
+			<br>
+			<input type="button" style="background-image:url('images/7.png');width:50px;height:50px;"  onClick="btnNum('7')">
+			<input type="button" style="background-image:url('images/8.png');width:50px;height:50px;"  onClick="btnNum('8')">
+			<input type="button" style="background-image:url('images/9.png');width:50px;height:50px;"  onClick="btnNum('9')">
+			<input type="button" style="background-image:url('images/minus.png');width:50px;height:50px;"  onClick="btnOp('-')">
+			<br>
+			<input type="button" style="background-image:url('images/4.png');width:50px;height:50px;"  onClick="btnNum('4')">
+			<input type="button" style="background-image:url('images/5.png');width:50px;height:50px;"  onClick="btnNum('5')">
+			<input type="button" style="background-image:url('images/6.png');width:50px;height:50px;"  onClick="btnNum('6')">
+			<input type="button" style="background-image:url('images/mul.png');width:50px;height:50px;"  onClick="btnOp('*')">
+			<br>
+			<input type="button" style="background-image:url('images/1.png');width:50px;height:50px;"  onClick="btnNum('1')">
+			<input type="button" style="background-image:url('images/2.png');width:50px;height:50px;"  onClick="btnNum('2')">
+			<input type="button" style="background-image:url('images/3.png');width:50px;height:50px;"  onClick="btnNum('3')">
+			<input type="button" style="background-image:url('images/div.png');width:50px;height:50px;"  onClick="btnOp('/')">
+			<br>
+			<input type="button" style="background-image:url('images/0.png');width:104px;height:50px;"  onClick="btnNum('0')">
+			<input type="button" style="background-image:url('images/dot.png');width:50px;height:50px;"  onClick="btnNum('.')">
+			<input type="button" style="background-image:url('images/equ.png');width:50px;height:50px;"  onClick="equa()">
+	
+		</div>
+		
+	</div>
+	
+</body>
+</html>
